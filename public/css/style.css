@@ -1,0 +1,63 @@
+/*-------------- global styles ---------------------*/
+
+body {
+	background-color: lightyellow;
+	height: 100vh;
+	min-width: 1048px
+	max-height: 826px;
+}
+
+footer {
+	bottom: 0;
+	height: 5%;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
+nav {
+	background-color: darkgray;
+	height: 5%;
+}
+
+nav > a {
+	color: white;
+}
+
+/*------------- login page -----------------------*/
+
+#login {
+	width: 70%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 100px;
+	background-color: white;
+}
+
+#login > a {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/*----------------- home page ---------------------*/
+.home-container {
+	display: flex;
+	height: 90%;
+}
+
+.spotify {
+	height: 100%;
+	width: 300px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.playlist-list {
+	height: 300px;
+}
+
+.content {
+	border: 2px solid black;
+}

@@ -55,6 +55,7 @@ function greetUser () {
 	console.log(userData);
 	const name = userData.display_name;
 	const greeting = $('<h3>').text("Hi, " + name).appendTo($('.spotify'))
+	$('<p>').addClass('instructions').text("Please select one of your spotify playlists as a soundtrack for your canvas.").appendTo('.spotify')
 }
 
 function showPlaylists () {
@@ -68,10 +69,12 @@ function showPlaylists () {
 		button.appendTo(playlist);
 		button.on('click', () => {
 			generatePlayWidget(i)
-			$('.playlist-list').detach()
+			$('.playlist-list').detach();
+			$('.instructions').detach();
 		})
 		// add a button for each of these, and create an event listener that somehow is able to grab the id or the uri of this playlist in order to generate the iframe widget
 	}
+	
 }
 
 function generatePlayWidget (i) {
@@ -86,12 +89,3 @@ function generatePlayWidget (i) {
 	})
 	iframe.appendTo('.spotify')
 }
-
-
-
-
-// event listeners
-
-$('button').on('click', () => {
-	console.log("I was clicked");
-})
