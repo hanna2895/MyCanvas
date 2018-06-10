@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
 const request = require('request');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser');
 const queryString = require('querystring');
 const expressLayouts = require('express-ejs-layouts');
 const session = require ('express-session')
 
+require('./db/db')
 
 // use ejs templates
 app.set('view engine', 'ejs');
@@ -22,6 +25,8 @@ app.use(session ({
 
 // --------------- middleware ----------------------
 
+app.use(methodOverride('_method'));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
 
 app.use(cookieParser());
@@ -30,6 +35,12 @@ app.use(cookieParser());
 
 const authController = require('./controllers/auth');
 app.use('/', authController);
+
+const userController = require('./controllers/users');
+app.use('/users', userController);
+
+const photoController = require('./controllers/photos');
+app.use('/photos', photoController)
 
 
 // -------------- OAuth stuff from Spotify --------------------
@@ -51,7 +62,7 @@ const generateRandomString = function(length) {
 
 var stateKey = 'spotify_auth_state';
 
- // GET ROUTE 
+ // GET ROUTE
 app.get('/login', function(req, res) {
 
   // ???? leaves record of this interaction in the user's browser before doing the code below
@@ -78,7 +89,7 @@ app.get('/login', function(req, res) {
 
 
 app.get('/callback', function(req, res) {
-  // console.log("HERE IS REQ.QUERY FROM THE CALLBACK ROUNTE------------------------"); 
+  // console.log("HERE IS REQ.QUERY FROM THE CALLBACK ROUNTE------------------------");
   // console.log(req.query)
   // your application requests refresh and access tokens
   // after checking the state parameter
@@ -102,7 +113,7 @@ app.get('/callback', function(req, res) {
 
 
     // GET THE TOKEN
-    // prepare auth stuff based on 
+    // prepare auth stuff based on
     var authOptions = {
       url: 'https://accounts.spotify.com/api/token',
       form: {
@@ -110,7 +121,7 @@ app.get('/callback', function(req, res) {
         redirect_uri: redirect_uri,
         grant_type: 'authorization_code'
       },
-      // hey i'm who login said i was 
+      // hey i'm who login said i was
       headers: {
         'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
       },
@@ -141,7 +152,7 @@ app.get('/callback', function(req, res) {
         // HANNAH figure out what this does and/or why/if it is even necessary
         request.get(options, function(error, response, body) {
           // console.log("THIS IS BODY FROM THE GET REQ IN THE POST REQ IN CALLBACK-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-          // console.log(body)          
+          // console.log(body)
         });
 
         // ***we can also pass the token to the browser to make requests from there
@@ -153,7 +164,7 @@ app.get('/callback', function(req, res) {
         //     access_token: access_token,
         //     refresh_token: refresh_token
         //   }));
-      } 
+      }
       // there was an error when you tried to make the request to get the token
       else {
       	console.log("THERE IS AN ERROR: INVALID TOKEN");
