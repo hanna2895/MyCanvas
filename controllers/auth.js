@@ -5,7 +5,7 @@ const User = require('../models/user')
 
 
 router.get('/', (req, res) => {
-	res.render('login.ejs')
+	res.render('register.ejs')
 })
 
 // var access_token = req.query.access_token,
