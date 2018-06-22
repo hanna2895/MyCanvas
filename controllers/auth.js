@@ -5,7 +5,7 @@ const User = require('../models/user')
 
 
 router.get('/', (req, res) => {
-	res.render('register.ejs')
+	res.render('app-login.ejs')
 })
 
 // var access_token = req.query.access_token,
@@ -25,13 +25,13 @@ router.get('/home', async (req, res, next) => {
 	// 	refresh_token: req.session.refresh_token
 	// })
 	try {
-		const foundUser = await User.findById(req.params.id)
-		console.log(foundUser);
+		console.log(req.session)
+		console.log(req.session.username, 'this is req.session.username')
 		res.render('home.ejs', {
 			session: JSON.stringify(req.session),
 			access_token: req.session.access_token,
 			refresh_token: req.session.refresh_token,
-			// user: foundUser,
+			user: req.session.username,
 			message: message
 		})
 	} catch (err) {

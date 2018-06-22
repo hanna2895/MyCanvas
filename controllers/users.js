@@ -46,7 +46,7 @@ router.post('/login', async (req, res, next) => {
         req.session.logged = true;
         req.session.username = user.username;
         console.log(req.session, '<---------- this is req.session ---------')
-        res.redirect('/home')
+        res.render('login.ejs')
       }
     } else {
       req.session.message = "Username or password is incorrect."

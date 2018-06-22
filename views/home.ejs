@@ -5,10 +5,21 @@
 	</div>
 
 	<div class="content">
-		<h3>You have successfully connected your Spotify account</h3>
+		<h3>You are logged in as <%=user%> and have successfully connected your Spotify account</h3>
 	</div>
 
-<%=session%>
+	<%=session%>
+	<%=user%>
+
+	<% if(user.photos != undefined) {%>
+		<% for (let i = user.photos.length-1; i >= 0; i--) { -%>
+			<% if (user.photos[i].url) {%>
+
+				<img src="<%= user.photos[i].url%>" class="show-image card-img img-fluid">
+
+			<%} %>
+		<% } -%>
+	<% } -%>
 
 
 </div>

@@ -10,7 +10,7 @@ router.get('/new', (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const foundUser = await User.findOne({username: req.session.username});
-
+    console.log(foundUser)
     const newPhoto = await Photos.create(req.body);
 
     if (req.session.logged === true) {
