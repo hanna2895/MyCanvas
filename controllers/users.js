@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Photos = require('../models/photo');
 const bcrypt = require('bcrypt');
 
 router.get('/new', (req, res, next) => {
@@ -63,13 +64,22 @@ router.get('/:id', async (req, res, next) => {
   req.session.message = null;
 
   try {
-    const foundUser = await Users.findById(req.params.id)
-    console.log(foundUser);
+    const foundUser = await User.findById(req.params.id)
+    console.log(foundUser, '------------ this is found user ---------------');
+    console.log(foundUser.photos, 'this is found user.photos')
+    const photos = [];
+    for (let i = 0; i < foundUser.photos.length; i++) {
+      const foundPhoto = await Photos.findById(foundUser.photos[i]._id)
+      photos.push(foundPhoto)
+      console.log(foundPhoto.url, 'this is url')
+    }
+    console.log(photos, 'this is photos')
     res.render('home.ejs', {
       session: JSON.stringify(req.session),
       access_token: req.session.access_token,
       refresh_token: req.session.refresh_token,
-      // user: foundUser,
+      user: foundUser,
+      photos: foundUser.photos,
       message: message
     })
   } catch(err) {

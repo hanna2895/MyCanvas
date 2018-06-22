@@ -8,32 +8,19 @@ router.get('/', (req, res) => {
 	res.render('app-login.ejs')
 })
 
-// var access_token = req.query.access_token,
-//             refresh_token = body.refresh_token;
-
-// router.get('/#' + queryString.stringify({ access_token: req.query.access_token, refresh_token: req.query.refresh_token }), (req, res) => {
-
-// 	res.render('home.ejs')
-// });
-
 router.get('/home', async (req, res, next) => {
 	const message = req.session.message;
 	req.session.message = null;
-	// res.render('home.ejs', {
-	// 	session: JSON.stringify(req.session),
-	// 	access_token: req.session.access_token,
-	// 	refresh_token: req.session.refresh_token
-	// })
+	req.session.logged = true;
+
 	try {
 		console.log(req.session)
 		console.log(req.session.username, 'this is req.session.username')
-		res.render('home.ejs', {
-			session: JSON.stringify(req.session),
-			access_token: req.session.access_token,
-			refresh_token: req.session.refresh_token,
-			user: req.session.username,
-			message: message
-		})
+		const user = await User.findOne({username: req.session.username})
+		console.log(user, 'this is user from the /home route')
+		console.log(user._id, 'this is user id from the /home route')
+		const userId = user._id
+		res.redirect('/users/' + userId)
 	} catch (err) {
 		next(err)
 	}
