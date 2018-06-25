@@ -27,4 +27,15 @@ router.get('/home', async (req, res, next) => {
 
 })
 
+router.get('/logout', (req, res) => {
+	req.session.destroy((err) => {
+		if (err) {
+			console.log('the session could not be destroyed', err);
+		} else {
+			console.log('the session was successfully destroyed and you have been logged out.')
+				res.render('app-login.ejs')
+		}
+	})
+})
+
 module.exports = router;
