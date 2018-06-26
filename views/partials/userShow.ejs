@@ -1,0 +1,12 @@
+<h3>You are logged in as <%=user.username%> and have successfully connected your Spotify account</h3>
+
+<% if(photos) {%>
+
+<% for (let i = photos.length-1; i >= 0; i--) { -%>
+  <% if (photos[i].url) {%>
+
+    <a href="/photos/<%=photos[i]._id%>"><img src="<%= user.photos[i].url%>"></a>
+
+  <%} %>
+<% } -%>
+<% } -%>

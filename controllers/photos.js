@@ -39,6 +39,8 @@ router.get('/:id', async(req,res, next) => {
   const foundPhoto = await Photos.findOne({_id: req.params.id})
   console.log(foundPhoto)
   res.render('photos/show.ejs', {
+    photoShow: true,
+    userShow: false,
     id: req.body.id,
     user: foundUser,
     photo: foundPhoto.url,

@@ -1,34 +1,13 @@
 <div class="home-container">
-	<div class="spotify">
-
-
-	</div>
+	<%- include ./partials/spotify %>
 
 	<div class="content">
-		<h3>You are logged in as <%=user.username%> and have successfully connected your Spotify account</h3>
-
-	<% if(photos) {%>
-
-		<% for (let i = photos.length-1; i >= 0; i--) { -%>
-			<% if (photos[i].url) {%>
-
-				<a href="/photos/<%=photos[i]._id%>"><img src="<%= user.photos[i].url%>"></a>
-
-			<%} %>
-		<% } -%>
-	<% } -%>
+		<% if (userShow) { %>
+			<%- include ./partials/userShow %>
+		<% } else if (photoShow) { %>
+			<%- include ./photos/show %>
+		<% } %>
 
 	</div>
 
 </div>
-
-
-
-<script type="text/javascript" src='/js/index.js'></script>
-<script type="text/javascript">
-	const access_token = '<%=access_token%>';
-	const refresh_token = '<%=refresh_token%>';
-	testFunction(access_token);
-	getPlaylistData(access_token, refresh_token)
-
-</script>

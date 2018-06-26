@@ -75,6 +75,8 @@ router.get('/:id', async (req, res, next) => {
     }
     console.log(photos, 'this is photos')
     res.render('home.ejs', {
+      userShow: true,
+      photoShow: false,
       session: JSON.stringify(req.session),
       access_token: req.session.access_token,
       refresh_token: req.session.refresh_token,
