@@ -5,7 +5,11 @@ const Photos = require('../models/photo');
 const bcrypt = require('bcrypt');
 
 router.get('/new', (req, res, next) => {
-  res.render('app-login.ejs')
+  const message = req.session.message;
+  req.session.message = null;
+  res.render('app-login.ejs', {
+    message: message
+  })
 })
 
 router.get('/register', (req, res, next) => {
@@ -75,6 +79,18 @@ router.get('/:id', async (req, res, next) => {
       user: foundUser,
       photos: foundUser.photos,
       message: message
+    })
+  } catch(err) {
+    next(err)
+  }
+})
+
+// get all the users (index, community canvas list page)
+router.get('/', async (req, res, next) => {
+  try {
+    const foundUsers = await User.find();
+    res.render('users/index.ejs', {
+      users: foundUsers
     })
   } catch(err) {
     next(err)

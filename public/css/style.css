@@ -24,6 +24,20 @@ nav > a {
 	color: white;
 }
 
+.card-holder {
+	width: 95%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.card {
+	text-align: center;
+	width: 20%;
+}
+
 /*------------- login page -----------------------*/
 
 #login {
@@ -69,8 +83,15 @@ img {
 
 /* ------------ image show page ------------------ */
 .img-show {
-	width: 100%;
+	width: 90%;
 	height: auto;
+	max-height: 70vh;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.img-link{
+	margin-bottom: 1%;
 }
 
 .content {
@@ -90,10 +111,17 @@ img {
 	margin-top: 2vh;
 }
 
+.photo-holder {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
 /* -------------- image edit page ---------------- */
 .img-edit {
 	width: 60%;
 	height: auto;
+	max-height: 30vh;
 	margin-left: 20%;
 	margin-right: 20%;
 }

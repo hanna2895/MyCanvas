@@ -1,10 +1,10 @@
 <% if(photo) {%>
 	<h1> <%= title %> </h1>
 	<img class="img-show" src="<%= photo%>">
-
+	<p> <%= description %> </p>
 	<div class="button-holder">
+		<a href="/home"><button class="btn btn-dark">Cancel and Go Back</button>
 		<a href="/photos/edit/<%= id %>"><button class="btn btn-dark">Edit this Photo</button></a>
-		<p> <%= description %> </p>
 		<form action="/photos/<%= id %>?_method=DELETE" method="POST">
 			<button class="btn btn-dark">Delete this Photo</button>
 		</form>

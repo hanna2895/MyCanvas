@@ -5,7 +5,13 @@ const User = require('../models/user');
 
 // add a new photo route
 router.get('/new', (req, res, next) => {
-  res.render('photos/new.ejs')
+  if (req.session.logged === true) {
+    res.render('photos/new.ejs')
+  } else {
+    req.session.message = "You must be logged in to add a photo. Please log in or register to continue."
+    res.redirect('/users/new')
+  }
+
 })
 
 router.post('/', async (req, res, next) => {
@@ -109,7 +115,7 @@ router.delete('/:id', async (req, res, next) => {
     const foundUserId = foundUser._id;
 
     res.redirect('/users/' + foundUserId);
-    
+
   } catch(err) {
     next(err)
   }

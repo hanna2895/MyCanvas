@@ -1,0 +1,11 @@
+<h1> Community Canvas </h1>
+
+<div class="card-holder">
+  <% for (let i = 0; i < users.length; i++) { %>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><a href="/users/<%=users[i]._id%>"><%=users[i].username%></a></h5>
+      </div>
+    </div>
+  <% } %>
+</div>
