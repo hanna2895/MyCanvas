@@ -5,6 +5,8 @@
 	<div class="button-holder">
 		<a href="/photos/edit/<%= id %>"><button class="btn btn-dark">Edit this Photo</button></a>
 		<p> <%= description %> </p>
-		<button class="btn btn-dark">Delete this Photo</button>
+		<form action="/photos/<%= id %>?_method=DELETE" method="POST">
+			<button class="btn btn-dark">Delete this Photo</button>
+		</form>
 	</div>
 <% } -%>

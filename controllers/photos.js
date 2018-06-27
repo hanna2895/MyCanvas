@@ -97,4 +97,22 @@ router.put('/:id', async(req, res, next) => {
   }
 })
 
+// delete route
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const foundPhoto = await Photos.findByIdAndRemove(req.params.id);
+    const foundUser = await User.findOne({username: req.session.username});
+
+    await foundUser.photos.id(req.params.id).remove();
+    await foundUser.save();
+
+    const foundUserId = foundUser._id;
+
+    res.redirect('/users/' + foundUserId);
+    
+  } catch(err) {
+    next(err)
+  }
+})
+
 module.exports = router;
