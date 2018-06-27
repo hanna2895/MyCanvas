@@ -11,8 +11,6 @@ router.get('/new', (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const foundUser = await User.findOne({username: req.session.username});
-    console.log(foundUser)
-    console.log(req.body, 'this is req.body from the add photo route')
     const newPhoto = await Photos.create(req.body);
 
     if (req.session.logged === true) {
@@ -34,30 +32,40 @@ router.post('/', async (req, res, next) => {
 
 // a photo show page
 router.get('/:id', async(req,res, next) => {
-  console.log(req.body.id)
   const foundUser = await User.findOne({username: req.session.username})
   const foundPhoto = await Photos.findOne({_id: req.params.id})
-  console.log(foundPhoto)
-  res.render('photos/show.ejs', {
+  res.render('home.ejs', {
     photoShow: true,
     userShow: false,
-    id: req.body.id,
+    id: foundPhoto._id,
     user: foundUser,
     photo: foundPhoto.url,
+    title: foundPhoto.title,
+    description: foundPhoto.description,
     access_token: req.session.access_token,
     refresh_token: req.session.refresh_token,
   })
 })
 
 // edit photo route
-router.get('/edit', async(req, res, next) => {
+router.get('/edit/:id' , async(req, res, next) => {
   try {
-    const user = await Users.findOne({username: req.session.username});
-
+    const user = await User.findOne({username: req.session.username});
+    const photo = await Photos.findById({_id: req.params.id})
+    console.log(photo._id, 'this is photo id --------')
     if (user) {
       if (user.photos) {
-        res.render('photos/edit.ejs', {
-          user: user
+        res.render('home.ejs', {
+          user: user,
+          photoId: photo._id,
+          url: photo.url,
+          title: photo.title,
+          description: photo.description,
+          userShow: false,
+          photoShow: false,
+          editPhoto: true,
+          access_token: req.session.access_token,
+          refresh_token: req.session.refresh_token
         })
       } else {
         req.session.message = "You do not have any photos. Please add content to your page before trying to edit."
@@ -69,6 +77,23 @@ router.get('/edit', async(req, res, next) => {
     }
   } catch(err) {
     next(err)
+  }
+})
+
+router.put('/:id', async(req, res, next) => {
+  console.log('this put route is being hit')
+  try {
+    const updatedPhoto = await Photos.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    const foundUser = await User.findOne({username: req.session.username});
+
+    foundUser.photos.id(req.params.id).remove();
+    foundUser.photos.push(updatedPhoto);
+
+    const foundUserId = foundUser._id;
+    const savedFoundUser = await foundUser.save();
+    res.redirect('/photos/' + updatedPhoto._id)
+  } catch(err) {
+    next(err);
   }
 })
 

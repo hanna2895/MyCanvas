@@ -14,7 +14,6 @@ router.get('/register', (req, res, next) => {
 
 // this is the registration route
 router.post('/register', async (req, res, next) => {
-  console.log('this route is being hit')
   const password = req.body.password;
   const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
   const newUser = {
@@ -24,12 +23,10 @@ router.post('/register', async (req, res, next) => {
   try {
     const createdUser = await User.create(newUser)
     if (createdUser) {
-      console.log('created a user')
       // console.log(createdUser)
       req.session.logged = true;
       req.session.username = createdUser.username;
       req.session.userId = createdUser._id
-      console.log(req.session)
       res.render('login.ejs')
     } else {
       req.session.message = "Sorry, your username or password is incorrect. Please try again"
@@ -46,7 +43,6 @@ router.post('/login', async (req, res, next) => {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         req.session.logged = true;
         req.session.username = user.username;
-        console.log(req.session, '<---------- this is req.session ---------')
         res.render('login.ejs')
       }
     } else {
@@ -65,15 +61,11 @@ router.get('/:id', async (req, res, next) => {
 
   try {
     const foundUser = await User.findById(req.params.id)
-    console.log(foundUser, '------------ this is found user ---------------');
-    console.log(foundUser.photos, 'this is found user.photos')
     const photos = [];
     for (let i = 0; i < foundUser.photos.length; i++) {
       const foundPhoto = await Photos.findById(foundUser.photos[i]._id)
       photos.push(foundPhoto)
-      console.log(foundPhoto.url, 'this is url')
     }
-    console.log(photos, 'this is photos')
     res.render('home.ejs', {
       userShow: true,
       photoShow: false,

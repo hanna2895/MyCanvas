@@ -1,1 +1,16 @@
+<h1> Edit this Photo </h1>
 
+<img class="img-edit" src="<%= url %>">
+
+<form action="/photos/<%= photoId %>?_method=PUT" method="POST">
+  <label> Image Source: </label>
+  <input type="text" name="url" class="form-control" id="exampleInputEmail" value="<%= url %>" />
+
+  <label> Image Title: </label>
+  <input type="text" name="title" class="form-control" id="exampleInputEmail" value="<%= title %>" />
+
+  <label> Image Description: </label>
+  <input type="text" name="description" class="form-control" id="exampleInputEmail" value="<%= description %>" />
+
+  <button type="submit" class="btn btn-dark">Edit Photo </button>
+</form>

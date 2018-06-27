@@ -66,3 +66,34 @@ img {
 	height: 200px;
 	width: auto;
 }
+
+/* ------------ image show page ------------------ */
+.img-show {
+	width: 100%;
+	height: auto;
+}
+
+.content {
+	width: 75vw;
+	margin-right: 2vw;
+	margin-left: auto;
+}
+
+.content > h1, .content > p {
+	text-align: center;
+}
+
+.button-holder {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	margin-top: 2vh;
+}
+
+/* -------------- image edit page ---------------- */
+.img-edit {
+	width: 60%;
+	height: auto;
+	margin-left: 20%;
+	margin-right: 20%;
+}

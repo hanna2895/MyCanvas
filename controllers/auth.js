@@ -14,11 +14,7 @@ router.get('/home', async (req, res, next) => {
 	req.session.logged = true;
 
 	try {
-		console.log(req.session)
-		console.log(req.session.username, 'this is req.session.username')
 		const user = await User.findOne({username: req.session.username})
-		console.log(user, 'this is user from the /home route')
-		console.log(user._id, 'this is user id from the /home route')
 		const userId = user._id
 		res.redirect('/users/' + userId)
 	} catch (err) {
