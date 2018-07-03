@@ -20,5 +20,10 @@
     "mongoose": "^5.1.4",
     "querystring": "^0.2.0",
     "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.24.5",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.5.0"
   }
 }

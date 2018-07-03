@@ -5,7 +5,11 @@ const User = require('../models/user')
 
 
 router.get('/', (req, res) => {
-	res.render('app-login.ejs')
+	const message = req.session.message;
+	req.session.message = null;
+	res.render('app-login.ejs', {
+		message: message
+	})
 })
 
 router.get('/home', async (req, res, next) => {
