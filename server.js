@@ -6,7 +6,8 @@ const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser');
 const queryString = require('querystring');
 const expressLayouts = require('express-ejs-layouts');
-const session = require ('express-session')
+const session = require ('express-session');
+// const bootstrap = require('bootstrap');
 
 require('./db/db')
 

@@ -1,10 +1,6 @@
-.testing {
-  width: 71.42857143%;
-  height: 68.75%;
-}
 /*-------------- global styles ---------------------*/
 body {
-  background-color: lightyellow;
+  background-color: #1F2421;
   height: 100vh;
   min-width: 1048px;
   max-height: 826px;
@@ -14,14 +10,17 @@ footer {
   height: 5%;
   position: absolute;
   text-align: center;
-  width: 100%;
+  width: 100vw;
+  color: #AFB1B0;
+  background-color: #000000;
 }
 nav {
-  background-color: darkgray;
+  background-color: #000000;
   height: 5%;
+  width: 100vw;
 }
-nav > a {
-  color: white;
+nav a {
+  color: #AFB1B0;
 }
 .card-holder {
   width: 95%;
@@ -37,13 +36,28 @@ nav > a {
 }
 /*------------- login page -----------------------*/
 #login {
-  width: 70%;
+  width: 50%;
   margin-right: auto;
   margin-left: auto;
   margin-top: 100px;
-  background-color: white;
+  background-color: #AFB1B0;
+  text-align: center;
 }
-#login > a {
+#login h1 {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+#login button {
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+  background-color: #007C29;
+}
+#login input {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#login a {
   margin-left: auto;
   margin-right: auto;
 }
