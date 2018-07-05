@@ -4,6 +4,7 @@ body {
   height: 100vh;
   min-width: 1048px;
   max-height: 826px;
+  font-family: 'Heebo', sans-serif;
 }
 footer {
   bottom: 0;
@@ -14,13 +15,23 @@ footer {
   color: #AFB1B0;
   background-color: #000000;
 }
+footer p {
+  margin-top: 1vh;
+}
 nav {
   background-color: #000000;
   height: 5%;
   width: 100vw;
 }
 nav a {
+  font-size: 1.2em;
   color: #AFB1B0;
+  text-decoration: none;
+  padding: 1vh 1vw;
+}
+nav a:hover {
+  color: #007C29;
+  text-decoration: none;
 }
 .card-holder {
   width: 95%;
@@ -39,18 +50,20 @@ nav a {
   width: 50%;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 100px;
+  margin-top: 50px;
   background-color: #AFB1B0;
   text-align: center;
 }
 #login h1 {
   padding-top: 1vh;
   padding-bottom: 1vh;
+  font-family: 'Open Sans', sans-serif;
 }
 #login button {
   margin-top: 1vh;
   margin-bottom: 2vh;
   background-color: #007C29;
+  padding: 1vh;
 }
 #login input {
   width: 90%;
@@ -60,6 +73,16 @@ nav a {
 #login a {
   margin-left: auto;
   margin-right: auto;
+  color: #007C29;
+}
+.playlist {
+  color: #AFB1B0;
+}
+.greeting {
+  color: #AFB1B0;
+}
+.instructions {
+  color: #AFB1B0;
 }
 /*----------------- home page ---------------------*/
 .home-container {

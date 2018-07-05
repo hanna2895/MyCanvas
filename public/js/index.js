@@ -8,14 +8,14 @@ const testFunction = (stuff) => {
 let userData, playlistData;
 
 const getPlaylistData = (access_token, refresh_token) => {
-	
+
 		// using the token on the client side
 		if (access_token) {
 			$.ajax({
 				url: 'https://api.spotify.com/v1/me/',
 				headers: {
 					'Authorization': 'Bearer ' + access_token
-				}, 
+				},
 				type: "GET",
 				dataType: 'json',
 
@@ -54,7 +54,7 @@ const getPlaylistData = (access_token, refresh_token) => {
 function greetUser () {
 	console.log(userData);
 	const name = userData.display_name;
-	const greeting = $('<h3>').text("Hi, " + name).appendTo($('.spotify'))
+	const greeting = $('<h3>').addClass('greeting').text("Hi, " + name).appendTo($('.spotify'))
 	$('<p>').addClass('instructions').text("Please select one of your spotify playlists as a soundtrack for your canvas.").appendTo('.spotify')
 }
 
@@ -74,13 +74,13 @@ function showPlaylists () {
 		})
 		// add a button for each of these, and create an event listener that somehow is able to grab the id or the uri of this playlist in order to generate the iframe widget
 	}
-	
+
 }
 
 function generatePlayWidget (i) {
 	const playlistUri = playlistData.items[i].uri
 	const iframe = $('<iframe>').attr({
-		'src': 'https://open.spotify.com/embed?uri=' + playlistUri.toString(), 
+		'src': 'https://open.spotify.com/embed?uri=' + playlistUri.toString(),
 		'width': '300',
 		'height': '300',
 		'frameborder': '0',
