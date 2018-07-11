@@ -78,7 +78,7 @@ nav {
 		padding: 1vh;
   }
   input {
-    width: 90%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -87,15 +87,47 @@ nav {
   	margin-right: auto;
 		color: @green;
   }
+	button {
+		width: 35%;
+	}
 }
 
 // ---------------- spotify bar --------------------
 .playlist{
 	color: @lightGray;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	.playlist-button {
+		background-color: @green;
+		margin-left: 1vw;
+		margin-top: 1vh;
+		border: none;
+		box-sizing: border-box;
+		height: 3vh;
+	}
+	.playlist-button:hover {
+		border: 1px solid @lightGray;
+		box-sizing: border-box;
+	}
 }
+
+
+
+	ul {
+		list-style: none;
+		padding-left: 0vw;
+	}
+
+
 
 .greeting {
 	color: @lightGray;
+	text-align: left;
+	color: @green;
+	h3 {
+
+	}
 }
 
 .instructions {
@@ -114,6 +146,8 @@ nav {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	margin-left: 1vw;
+	margin-right: 1vw;
 }
 
 .playlist-list {
@@ -122,11 +156,27 @@ nav {
 
 .content {
 	border: 2px solid black;
+	width: 75vw;
+	height: 87vh;
+	margin-right: 2vw;
+	margin-left: auto;
+	margin-top: 2vh;
+	overflow: scroll;
+	max-width: 75vw;
+	h1, p {
+		text-align: center;
+	}
 }
 
 img {
 	height: 200px;
 	width: auto;
+}
+
+h3 {
+	color: @lightGray;
+	text-align: center;
+	padding-top: 1vh;
 }
 
 /* ------------ image show page ------------------ */
@@ -142,16 +192,6 @@ img {
 	margin-bottom: 1%;
 }
 
-.content {
-	width: 75vw;
-	margin-right: 2vw;
-	margin-left: auto;
-}
-
-.content > h1, .content > p {
-	text-align: center;
-}
-
 .button-holder {
 	width: 100%;
 	display: flex;
@@ -163,8 +203,18 @@ img {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
+	margin-top: 6vh;
 }
 
+.content-header {
+	background-color: @black;
+	position: fixed;
+	width: 72%;
+	height: 5vh;
+	h3 {
+		color: @green;
+	}
+}
 /* -------------- image edit page ---------------- */
 .img-edit {
 	width: 60%;

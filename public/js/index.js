@@ -65,7 +65,7 @@ function showPlaylists () {
 	for (let i = 0; i < playlistData.items.length; i ++) {
 		const playlist = $('<li>').addClass('playlist').text(playlistData.items[i].name)
 		playlist.appendTo('.playlist-list')
-		const button = $('<button>').text('select').addClass(i)
+		const button = $('<button>').text('select').addClass(i).addClass('playlist-button')
 		button.appendTo(playlist);
 		button.on('click', () => {
 			generatePlayWidget(i)

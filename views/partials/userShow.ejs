@@ -1,7 +1,10 @@
-<h3><%=user.username%>'s Canvas</h3>
+<div class="content-header"><h3><%=user.username%>'s Canvas</h3></div>
 
-<% if(photos) {%>
-  <div class="photo-holder">
+<div class="photo-holder">
+
+
+  <% if(photos) {%>
+
     <% for (let i = photos.length-1; i >= 0; i--) { -%>
       <% if (photos[i].url) {%>
 
@@ -9,5 +12,6 @@
 
       <%} %>
     <% } -%>
-  </div>
-<% } -%>
+
+  <% } -%>
+</div>
